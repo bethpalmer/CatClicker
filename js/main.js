@@ -32,93 +32,45 @@ function loadCats(array){
 	    catDisplay.appendChild(image);
 
 	    var count = document.createElement('p');
+	    count.id = [i];
 		count.innerHTML = array[i].click;
 		catDisplay.appendChild(count);
-		// count.style.marginBottom = '20px';
 		// image.id = array[i].id;
 
 	    document.body.appendChild(catDisplay);
-	}
-
-	// function onClick(){
-	// 	for (var i=0; i<array.length; i++){
-	// 		array[i].click += 1;
-	// 		count[i].innerHTML = array[i].click;
-	// 		catDisplay.appendChild(count);
-	// 	}
-	// }
-
-	// var elem = document.getElementsByClassName('cat');
-	//     console.log(elem);
-
-	// for (var i=0; i<elem.length; i++){
-	// 	elem[i].addEventListener('click', function(){
-	//     	array[i].click += 1;
-	//     	count.innerHTML = array[i].click;
-	// 	})
-	// }	
-	    
+	}	
 }
 
 //////////// MAKE EACH IMG.CAT CLICKABLE //////////////
 
 function clickCats(array){
 	var elem = document.getElementsByClassName('cat');
+
 	for (var i=0; i<elem.length; i++){
-		elem[i].addEventListener('click', clickHandler);
-	}
-}
+		elem[i].addEventListener('click', clickHandler(i));
+	};
 
-//////////// ON CLICK 1. REGISTER WHICH OBJECT THAT WAS ON
-//////////////////    2. UPDATE THAT OBJECTS CLICK COUNT
-//////////////////    3. OVERWITE 'P' COUNT
+	function clickHandler(i){
+		return function(){
+            var noOfClicks = cats[i].click += 1;
+            console.log(cats[i].click);
 
-function clickHandler(){
-	console.log("Click registered for");
-}
+//////// I am recordeing the number of clicks on each cat separately in their click counter
+//////// I need to grab the relevant 'p' tag and overwrite the innerHTML using the click counter
 
-//////////////// PLAN OF ACTION ///////////
-// 1. Make image clickable - DONE - WOOP!
-// 2. When clicked, cats[i].click +1
-// 3. Select 'p' count and  overwrite it
+			var counter = document.getElementsByTagName('p');
+			counter[i].innerHTML = noOfClicks;
+
+   //          var count = document.getElementById('[i]');
+			// count.innerHTML = cats[i].click;
+			// array[i].count = array[i].count +1;
+        };
+	};
+};
+
+//// overwrite
 
 
-// function onClick(){
-// 	console.log("You clicked that cat!");
-// }
 
 loadCats(cats);
 clickCats(cats);
-
-
-
-	
-	    		// var elem = document.getElementsByClassName('cat');
-	    	// }
-
-	    	// elem[0].addEventListener("click",function(){
-	     //                  array[0].count = array[0].count + 1;
-	     //                  var total= array[0].count;
-	     //                  var numb = document.getElementsByTagName("p")[0];
-	     //                  numb.innerHTML = total;
-	     //          },false);
-      //       elem[1].addEventListener("click",function(){
-		    //               array[1].count = array[1].count + 1;
-		    //               var total= array[1].count;
-		    //               var numb = document.getElementsByTagName("p")[1];
-		    //               numb.innerHTML = total;
-		    //       },false);
-	    // };
-
-	 
-
-
-
-///////////////////// THIS CLICK FUNCTION WORKED WELL FOR A SINGULAR CAT ///////////////////////////////////
-    // var clicks = 0;
-    // function onClick() {
-    //     clicks += 1;
-    //     document.getElementById("clicks").innerHTML = clicks;
-    // };
-
-    
